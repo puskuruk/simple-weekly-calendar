@@ -37,17 +37,6 @@ class EventTest < ActiveSupport::TestCase
     refute new_event.valid?
   end
 
-  test 'Checking type of description field' do
-    new_event = Event.create(
-      start: Time.now,
-      end: Time.now,
-      description: Time.now,
-      title: 'not vlank'
-    )
-    refute new_event.valid?
-  end
-
-
   test 'checking creating automatically color for new event' do
     new_event = Event.create(
       start: Time.now,
