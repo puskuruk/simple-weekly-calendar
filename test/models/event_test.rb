@@ -8,7 +8,6 @@ class EventTest < ActiveSupport::TestCase
       keys_array.each_with_index do |key, index|
         index != time ? event["#{key}"] = "not blank" : event["#{key}"] = nil
       end
-      p event
       new_event = Event.create(event)
       refute new_event.valid?, 'Checking creating new event with making one field empty and every value is string'
       assert_not_nil new_event.errors
@@ -23,7 +22,6 @@ class EventTest < ActiveSupport::TestCase
       description: 'not blank',
       title: 'not vlank'
     )
-    p new_event
     assert new_event.valid?
   end
 
@@ -44,7 +42,6 @@ class EventTest < ActiveSupport::TestCase
       description: 'not blank',
       title: 'not vlank'
     )
-    p new_event.color
     refute new_event.color.nil?
   end
 end
