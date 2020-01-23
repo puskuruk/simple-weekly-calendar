@@ -31,4 +31,25 @@ class Api::V1::EventsControllerTest < ActionDispatch::IntegrationTest
     post "/api/v1/events", params: new_event
     assert_response :success
   end
+
+  test 'post /api/v1/events/search for taking current events' do
+    @current_events_array = {
+      event: {
+        date: Time.now
+      }
+    }
+    post '/api/v1/events/search', params: @current_events_array
+    p response.body
+    assert_response :success
+  end
+
+  test 'post /api/v1/events/search with wrong parameter' do
+    @current_events_array = {
+      event: {
+        date: 'Time.now'
+      }
+    }
+    post '/api/v1/events/search', params: @current_events_array
+    assert_response :unprocessable_entity
+  end
 end
