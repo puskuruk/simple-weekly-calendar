@@ -27,8 +27,8 @@
                           <input v-model="newEvent.end"  id="end-date" name="end" type="date" />
                         </div>
                     </div>
-                    <input v-model="newEvent.title" type="text" id="description" placeholder="title" name="title" />
-                    <input v-model="newEvent.description" type="text" id="description" placeholder="description" name="description" />
+                    <input v-model="newEvent.title" type="text" placeholder="title" name="title" />
+                    <input v-model="newEvent.description" type="text" placeholder="description" name="description" />
                   <input type="submit" value="Submit" />
                 </form>
             </div>
