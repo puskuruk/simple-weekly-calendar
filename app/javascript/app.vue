@@ -10,7 +10,7 @@
       <div class="solid-border"></div>
       <div class="solid-border"></div>
       <div style="position:absolute; z-index: 2; width: 100%;" class="seven">
-        <div class="event-items full" :data-event-id="index" :style="eventItemStyle(event,index)" v-for="(event,index) in currentEvents">
+        <div class="event-items full" :data-event-id="index" :style="eventItemStyle(event,index)" :key="event.title" v-for="(event,index) in currentEvents">
           {{event.title}}
           <br>
           {{event.description}}
@@ -23,12 +23,10 @@
 <script>
 import { mapState, mapActions } from 'vuex'; //mapGetters 
 import CalendarHeader from './components/CalendarHeader'
-import EventItem from "./components/EventItem";
 
 export default {
   components: {
     CalendarHeader,
-    EventItem
   },
   computed: {
     ...mapState([

@@ -17,7 +17,7 @@
         </div>
         <div id="days--of--week-wrapper" class="full">
             <div id="days--of--week">
-                <div class="full calendar--item" v-for="(day, index) in currentDaysOfWeek" v-bind:key="day+index">
+                <div class="full calendar--item" v-for="(day, index) in currentDaysOfWeek" :key="day+index">
                     <div class="solid-border calendar--header">
                         <day-of-week-header class="day-of-week-header--item" v-bind:date="day"/>
                     </div>
