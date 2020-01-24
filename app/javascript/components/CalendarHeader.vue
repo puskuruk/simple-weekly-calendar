@@ -1,18 +1,18 @@
 <template>
-    <div id="calendar--page--header--wrapper">
-        <div id="calendar--page--header">
+    <div class="full" id="calendar--page--header--wrapper">
+        <div class="full" id="calendar--page--header">
             <div class="center">
-                <button style="z-index: 3;" @click="goToPreviousWeek">Previous Week</button>
+                <button @click="goToPreviousWeek">Previous Week</button>
             </div>
             <div style="text-align: center;">
                 <div class="full" style="display: flex; flex-direction: column;">
                     <h1>Calendar App</h1>
                     <h1 id="full-year">{{ year }}</h1>
-                    <add-new-event style="z-index: 3;" />
+                    <add-new-event />
                 </div>
             </div>
             <div class="center">
-                <button style="z-index: 3;" @click="goToNextWeek">Next Week</button>
+                <button @click="goToNextWeek">Next Week</button>
             </div>
         </div>
         <div id="days--of--week-wrapper" class="full">

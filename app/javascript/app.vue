@@ -70,9 +70,8 @@ body{
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: 42% 58%;
     overflow: hidden;
-
 }
 
 .center{
