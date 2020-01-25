@@ -11,7 +11,7 @@
       <div class="solid-border"></div>
       <div style="position:absolute; z-index: 2; width: 100%;" class="seven">
         <div class="event-items full" @mouseout="hideDeleteButton" @mouseover="showDeleteButton" :data-event-id="event.id" :style="eventItemStyle(event,index)" :key="event.id" v-for="(event,index) in currentEvents">
-          <div style="width: 100%;">
+          <div style="width: 100%;" @click="updateEvent">
             {{event.title}}
             <br>
             {{event.description}}
@@ -36,7 +36,9 @@ export default {
   computed: {
     ...mapState([
         'currentDaysOfWeek',
-        'currentEvents'
+        'currentEvents',
+        'eventFormStatus',
+        'currentEventId'
     ]),
   },
   methods: {
@@ -45,6 +47,9 @@ export default {
         'takeCurrentWeeksEvents',
         'updateCurrentDaysOfWeek',
         'deleteEvent',
+        'updateNewEvent',
+        'setEventFormStatus',
+        'setCurrentEventId'
     ]),
     eventItemStyle: function (event, index) {
       return {
@@ -57,7 +62,7 @@ export default {
       return event.target.parentNode.getAttribute('data-event-id');
     },
     deleteEventItem: function(event){
-      const eventId = this.getDataEventId(event);
+      const eventId = this.currentEventId;
       this.deleteEvent(eventId);
     },
     changeDeleteButton: function(event, action){
@@ -70,6 +75,7 @@ export default {
             break;
 
           case 'show':
+            this.setCurrentEventId(eventId);
             deleteButton.style.display = 'block';
             break;
 
@@ -83,6 +89,18 @@ export default {
     },
     hideDeleteButton: function(event){
       this.changeDeleteButton(event, 'hide')
+    },
+    updateEvent: function(){
+      event.preventDefault();
+      const eventId = this.getDataEventId(event);
+      this.updateNewEvent(eventId);
+      const newEventFormModalState = {
+              type: "update",
+              text:  "Update",
+              successMessage: 'Event is Successfully Updated',
+              opened: !this.eventFormStatus.opened
+            }
+      this.setEventFormStatus(newEventFormModalState);
     }
   },
   created(){

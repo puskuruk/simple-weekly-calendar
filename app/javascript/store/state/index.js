@@ -21,8 +21,11 @@ const state = {
     },
     eventFormStatus: {
         type: null,
+        text: null,
+        successMessage: null,
         opened: false
-    }
+    },
+    currentEventId: null
 };
 
 export default state;

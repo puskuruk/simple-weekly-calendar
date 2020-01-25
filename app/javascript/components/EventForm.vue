@@ -13,7 +13,7 @@
           <div class="modal-content">
             <div class="modal-header" style="text-align: center;">
               <span @click="changeModalStatus" class="close">&times;</span>
-              <h2>{{eventFormStatus.type}} Event</h2>
+              <h2>{{eventFormStatus.text}} Event</h2>
             </div>
             <div id="modal-body">
                 <form v-show="!this.success" action="/" method="POST" class="full" id="event-form" v-on:submit="submitForm">
@@ -32,7 +32,7 @@
                   <input type="submit" value="Submit" />
                 </form>
             </div>
-              <h1 v-show="this.success" style="margin: auto auto; text-align:center;">New Event Created!</h1>
+              <h1 v-show="this.success" style="margin: auto auto; text-align:center;">{{eventFormStatus.successMessage}}</h1>
             <div class="modal-footer">
               <h3></h3>
             </div>
@@ -45,21 +45,13 @@
 import { mapState, mapActions } from 'vuex';
 export default {
     name: "AddNewEvent",
-    data: function () {
-      return {
-        newEvent: {
-          "start": null,
-          "end": null,
-          "title": null,
-          "description": null
-        },
-      }
-    },
     computed: {
         ...mapState([
           'error',
           'success',
-          'eventFormStatus'
+          'eventFormStatus',
+          'newEvent',
+          'currentEventId'
         ]),
         startError: function(){
           return this.error.event ? this.error.event.start: false
@@ -76,17 +68,33 @@ export default {
             const requestObject = {
               values: this.newEvent,
             }
-            this.addNewEvent(requestObject);
+
+            switch (this.eventFormStatus.type) {
+              case "update":
+                requestObject["id"] = this.currentEventId;
+                this.updateEvent(requestObject);
+                break;
+              case "create":
+                this.addNewEvent(requestObject);
+                break;
+
+              default:
+                break;
+            }
         },
         ...mapActions([
             'addNewEvent',
-            'setEventFormStatus'
+            'setEventFormStatus',
+            'updateEvent'
         ]),
         changeModalStatus: function(){
-            const newState = this.eventFormStatus;
-            newState.type = "Add New"
-            newState.opened = !this.eventFormStatus.opened
-            this.setEventFormStatus(newState)
+            const newState = {
+              type: "create",
+              text: "Add New",
+              successMessage: 'New Event Created!',
+              opened: !this.eventFormStatus.opened
+            }
+            this.setEventFormStatus(newState);
         }
     },
 }

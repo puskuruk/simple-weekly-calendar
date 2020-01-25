@@ -9,6 +9,9 @@ import setError from './setError';
 import setSuccess from './setSuccess';
 import deleteEvent from './deleteEvent';
 import setEventFormStatus from "./setEventFormStatus";
+import updateNewEvent from "./updateNewEvent";
+import updateEvent from "./updateEvent";
+import setCurrentEventId from "./setCurrentEventId";
 
 const actions = {
     getAllEventsFromApi,
@@ -21,7 +24,10 @@ const actions = {
     setError,
     setSuccess,
     deleteEvent,
-    setEventFormStatus
+    setEventFormStatus,
+    updateNewEvent,
+    updateEvent,
+    setCurrentEventId
 }
 
 export default actions;
