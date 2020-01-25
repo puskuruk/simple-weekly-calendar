@@ -1,4 +1,4 @@
-const ROOT_API_ENDPOINT = 'api';
+const ROOT_API_ENDPOINT = '/api';
 const API_VERSION = '/v1';
 const ROOT_ENDPOINT = ROOT_API_ENDPOINT + API_VERSION;
 

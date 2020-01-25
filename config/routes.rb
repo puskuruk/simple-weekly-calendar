@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get '/calendar', to: 'pages#calendar'
-  
-  root to: redirect('/calendar')
+  root to: 'pages#index'
 
   namespace :api do
     namespace :v1 do
