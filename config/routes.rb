@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/calendar', to: 'pages#calendar'
+  
+  root to: redirect('/calendar')
+
+  namespace :api do
+    namespace :v1 do
+      resources :events
+      post '/events/search', to: 'events#search_events_in_week'
+    end
+  end
 end
