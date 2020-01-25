@@ -13,6 +13,12 @@ const state = {
         }
     },
     success: false,
+    newEvent: {
+        "start": null,
+        "end": null,
+        "title": null,
+        "description": null
+    }
 };
 
 export default state;

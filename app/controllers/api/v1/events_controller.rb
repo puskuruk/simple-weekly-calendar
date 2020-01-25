@@ -24,6 +24,12 @@ class Api::V1::EventsController < ApplicationController
         end
     end
 
+    # DELETE /events/1
+    def destroy
+      @event = Event.find(params[:id])
+      @event.destroy
+    end
+
     # POST api/v1/search
     def search_events_in_week
       first_day = params[:event][:date]
