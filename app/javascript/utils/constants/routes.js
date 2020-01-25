@@ -4,7 +4,8 @@ const ROOT_ENDPOINT = ROOT_API_ENDPOINT + API_VERSION;
 
 const ROOT_ENDPOINTS = {
     events: ROOT_ENDPOINT + '/events',
-    search: ROOT_ENDPOINT + '/events/search'
+    search: ROOT_ENDPOINT + '/events/search',
+    delete: (id) => `${ROOT_ENDPOINT}/events/${id}`
 }
 
 const ROUTES = {
@@ -22,6 +23,10 @@ const ROUTES = {
             search_events_in_week: {
                 type: "POST",
                 url: ROOT_ENDPOINTS.search
+            },
+            delete: {
+                type: "DELETE",
+                url: ROOT_ENDPOINTS.delete
             }
         }
     }

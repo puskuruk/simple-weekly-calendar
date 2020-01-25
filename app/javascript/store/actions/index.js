@@ -7,6 +7,7 @@ import updateCurrentDaysOfWeek from "./updateCurrentDaysOfWeek";
 import takeCurrentWeeksEvents from "./takeCurrentWeeksEvents";
 import setError from './setError';
 import setSuccess from './setSuccess';
+import deleteEvent from './deleteEvent';
 
 const actions = {
     getAllEventsFromApi,
@@ -17,7 +18,8 @@ const actions = {
     updateCurrentDaysOfWeek,
     takeCurrentWeeksEvents,
     setError,
-    setSuccess
+    setSuccess,
+    deleteEvent,
 }
 
 export default actions;
