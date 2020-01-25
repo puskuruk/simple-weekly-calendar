@@ -6,6 +6,7 @@ import setCurrentEvents from "./setCurrentEvents";
 import setError from './setError'
 import setSuccess from './setSuccess'
 import setNewEvent from "./setNewEvent";
+import setEventFormStatus from "./setEventFormStatus";
 
 const mutations = {
     setCurrentDate,
@@ -15,7 +16,8 @@ const mutations = {
     setCurrentEvents,
     setError,
     setSuccess,
-    setNewEvent
+    setNewEvent,
+    setEventFormStatus
 }
 
 export default mutations;

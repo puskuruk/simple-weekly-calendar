@@ -8,6 +8,7 @@ import takeCurrentWeeksEvents from "./takeCurrentWeeksEvents";
 import setError from './setError';
 import setSuccess from './setSuccess';
 import deleteEvent from './deleteEvent';
+import setEventFormStatus from "./setEventFormStatus";
 
 const actions = {
     getAllEventsFromApi,
@@ -20,6 +21,7 @@ const actions = {
     setError,
     setSuccess,
     deleteEvent,
+    setEventFormStatus
 }
 
 export default actions;

@@ -8,7 +8,7 @@
                 <div class="full" style="display: flex; flex-direction: column;">
                     <h1>Calendar App</h1>
                     <h1 id="full-year">{{ year }}</h1>
-                    <add-new-event />
+                    <event-form />
                 </div>
             </div>
             <div class="center">
@@ -29,13 +29,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import AddNewEvent from "./AddNewEvent";
+import EventForm from "./EventForm";
 import DayOfWeekHeader from "./DayOfWeekHeader";
 
 export default {
     name: "CalendarHeader",
     components: {
-        AddNewEvent,
+        EventForm,
         DayOfWeekHeader
     },
     computed: {

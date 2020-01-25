@@ -7,13 +7,13 @@
         </button>
 
         <!-- The Modal -->
-        <div id="myModal" v-show="modalState" class="modal">
+        <div id="myModal" v-show="eventFormStatus.opened" class="modal">
         
           <!-- Modal content -->
           <div class="modal-content">
             <div class="modal-header" style="text-align: center;">
               <span @click="changeModalStatus" class="close">&times;</span>
-              <h2>Add New Event</h2>
+              <h2>{{eventFormStatus.type}} Event</h2>
             </div>
             <div id="modal-body">
                 <form v-show="!this.success" action="/" method="POST" class="full" id="event-form" v-on:submit="submitForm">
@@ -53,17 +53,13 @@ export default {
           "title": null,
           "description": null
         },
-        modalState: false,
-
       }
     },
     computed: {
-        modalClass: function(){
-            return `${this.modalState} modal`
-        },
         ...mapState([
           'error',
-          'success'
+          'success',
+          'eventFormStatus'
         ]),
         startError: function(){
           return this.error.event ? this.error.event.start: false
@@ -83,10 +79,14 @@ export default {
             this.addNewEvent(requestObject);
         },
         ...mapActions([
-            'addNewEvent'
+            'addNewEvent',
+            'setEventFormStatus'
         ]),
         changeModalStatus: function(){
-            this.modalState = !this.modalState
+            const newState = this.eventFormStatus;
+            newState.type = "Add New"
+            newState.opened = !this.eventFormStatus.opened
+            this.setEventFormStatus(newState)
         }
     },
 }

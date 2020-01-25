@@ -18,6 +18,10 @@ const state = {
         "end": null,
         "title": null,
         "description": null
+    },
+    eventFormStatus: {
+        type: null,
+        opened: false
     }
 };
 
