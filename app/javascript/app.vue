@@ -16,7 +16,7 @@
             <br>
             {{event.description}}
           </div>
-          <div @click="deleteEventItem" :id="'delete-button-'+event.id" style="display: none; transition: 0.4s all ease-in-out" class="delete-wrapper">
+          <div @click="deleteEventItem" :id="'delete-button-'+event.id" style="display: none; transition: 0.4s all ease-in-out; border-radius: 20%;" class="delete-wrapper">
             X
           </div>
         </div>
@@ -172,5 +172,7 @@ body{
     position: relative;
     text-align: center;
     display: flex;
+    user-select: none;
+    cursor: pointer;
 }
 </style>
