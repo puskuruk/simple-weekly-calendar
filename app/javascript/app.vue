@@ -12,7 +12,7 @@
       <div style="position:absolute; z-index: 2; width: 100%;" class="seven">
         <div class="event-items full" @mouseout="hideDeleteButton" @mouseover="showDeleteButton" :data-event-id="event.id" :style="eventItemStyle(event,index)" :key="event.id" v-for="(event,index) in currentEvents">
           <div style="width: 100%;" @click="updateEvent">
-            {{event.title}}
+            <b>{{event.title}}</b>
             <br>
             {{event.description}}
           </div>
