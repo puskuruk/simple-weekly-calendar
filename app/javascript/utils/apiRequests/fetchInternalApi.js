@@ -9,10 +9,10 @@ const fetchInternalApi = async(requestObject) => {
         type: requestObject.type,
         data: ajaxFormattedString,
         success: function(responseFromAjax) {
-            requestObject.success(responseFromAjax);
+            typeof requestObject.success === "function" ? requestObject.success(responseFromAjax) : console.log('succesfully fetched');
         },
         error: function(responseFromAjax) {
-            requestObject.error(responseFromAjax);
+            typeof requestObject.error === "function" ? requestObject.error(responseFromAjax) : console.warn(responseFromAjax)
         }
     })
 }

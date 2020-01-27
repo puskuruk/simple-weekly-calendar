@@ -7,6 +7,11 @@ import updateCurrentDaysOfWeek from "./updateCurrentDaysOfWeek";
 import takeCurrentWeeksEvents from "./takeCurrentWeeksEvents";
 import setError from './setError';
 import setSuccess from './setSuccess';
+import deleteEvent from './deleteEvent';
+import setEventFormStatus from "./setEventFormStatus";
+import updateNewEvent from "./updateNewEvent";
+import updateEvent from "./updateEvent";
+import setCurrentEventId from "./setCurrentEventId";
 
 const actions = {
     getAllEventsFromApi,
@@ -17,7 +22,12 @@ const actions = {
     updateCurrentDaysOfWeek,
     takeCurrentWeeksEvents,
     setError,
-    setSuccess
+    setSuccess,
+    deleteEvent,
+    setEventFormStatus,
+    updateNewEvent,
+    updateEvent,
+    setCurrentEventId
 }
 
 export default actions;

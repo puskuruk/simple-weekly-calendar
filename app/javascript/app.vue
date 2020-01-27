@@ -10,10 +10,15 @@
       <div class="solid-border"></div>
       <div class="solid-border"></div>
       <div style="position:absolute; z-index: 2; width: 100%;" class="seven">
-        <div class="event-items full" :data-event-id="index" :style="eventItemStyle(event,index)" :key="event.title" v-for="(event,index) in currentEvents">
-          {{event.title}}
-          <br>
-          {{event.description}}
+        <div class="event-items full" @mouseout="hideDeleteButton" @mouseover="showDeleteButton" :data-event-id="event.id" :style="eventItemStyle(event,index)" :key="event.id" v-for="(event,index) in currentEvents">
+          <div style="width: 100%;" @click="updateEvent">
+            <b>{{event.title}}</b>
+            <br>
+            {{event.description}}
+          </div>
+          <div @click="deleteEventItem" :id="'delete-button-'+event.id" style="display: none; transition: 0.4s all ease-in-out; border-radius: 20%;" class="delete-wrapper">
+            X
+          </div>
         </div>
       </div>
     </div>
@@ -31,14 +36,20 @@ export default {
   computed: {
     ...mapState([
         'currentDaysOfWeek',
-        'currentEvents'
+        'currentEvents',
+        'eventFormStatus',
+        'currentEventId'
     ]),
   },
   methods: {
     ...mapActions([
         'setToday',
         'takeCurrentWeeksEvents',
-        'updateCurrentDaysOfWeek'
+        'updateCurrentDaysOfWeek',
+        'deleteEvent',
+        'updateNewEvent',
+        'setEventFormStatus',
+        'setCurrentEventId'
     ]),
     eventItemStyle: function (event, index) {
       return {
@@ -46,6 +57,50 @@ export default {
         gridColumnStart: (new Date(event.start).getDay()+1),
         gridColumnEnd: (new Date(event.end).getDay()+2)
       }
+    },
+    getDataEventId: function(event){
+      return event.target.parentNode.getAttribute('data-event-id');
+    },
+    deleteEventItem: function(event){
+      const eventId = this.currentEventId;
+      this.deleteEvent(eventId);
+    },
+    changeDeleteButton: function(event, action){
+      const eventId = this.getDataEventId(event);
+      const deleteButton = document.getElementById('delete-button-'+eventId);
+      if (deleteButton !== null){
+        switch (action) {
+          case 'hide':
+            deleteButton.style.display = 'none';
+            break;
+
+          case 'show':
+            this.setCurrentEventId(eventId);
+            deleteButton.style.display = 'block';
+            break;
+
+          default:
+            break;
+        }
+      }
+    },
+    showDeleteButton: function(event){
+      this.changeDeleteButton(event, 'show')
+    },
+    hideDeleteButton: function(event){
+      this.changeDeleteButton(event, 'hide')
+    },
+    updateEvent: function(){
+      event.preventDefault();
+      const eventId = this.getDataEventId(event);
+      this.updateNewEvent(eventId);
+      const newEventFormModalState = {
+              type: "update",
+              text:  "Update",
+              successMessage: 'Event is Successfully Updated',
+              opened: !this.eventFormStatus.opened
+            }
+      this.setEventFormStatus(newEventFormModalState);
     }
   },
   created(){
@@ -65,6 +120,17 @@ body{
     height: 100vh;
 }
 
+.delete-wrapper{
+  width: 2ch;
+  height: 2ch;
+  background-color:red;
+  margin: auto 0;
+  text-align: center;
+  color:white;
+  font-weight: 500;
+  user-select: none;
+  cursor: pointer;
+}
 
 #calendar--page{
     width: 100%;
@@ -105,5 +171,8 @@ body{
     z-index: 2;
     position: relative;
     text-align: center;
+    display: flex;
+    user-select: none;
+    cursor: pointer;
 }
 </style>

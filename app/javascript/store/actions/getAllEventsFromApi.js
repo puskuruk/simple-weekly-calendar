@@ -6,7 +6,6 @@ const getAllEventsFromApi = async({ commit }) => {
         success: function(response) {
             commit('setEvents', sortByProperty(response, "start"))
         },
-        error: 'genericError'
     }
 
     await events.index(resolvedFunctions)
