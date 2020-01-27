@@ -34,19 +34,20 @@ class Api::V1::EventsController < ApplicationController
     # POST api/v1/search
     def search_events_in_week
       first_day = params[:event][:date]
-      @events_in_week = Event.events_in_week(first_day)
+      @events_in_week = Event.events_in_week(first_day) rescue nil
       
-      if @events_in_week != nil 
+      unless @events_in_week == nil 
         render json: {
           status: 200,
           events: @events_in_week
         },
-        status: :created
+        status: :ok
       else
         render json: {
           status: 422,
           events: @events_in_week
-        }        
+        },
+        status: :unprocessable_entity
       end
     end
 

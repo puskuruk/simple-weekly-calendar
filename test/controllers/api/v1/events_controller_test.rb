@@ -39,7 +39,6 @@ class Api::V1::EventsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     post '/api/v1/events/search', params: @current_events_array
-    p response.body
     assert_response :success
   end
 
